@@ -1,6 +1,7 @@
-package com.tweteroo.api.domain;
+package com.tweteroo.api.users.domain;
 
 public class User {
+    int id;
     String username;
     String avatar;
 
@@ -11,13 +12,21 @@ public class User {
         this.avatar = avatar;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getUsername() {
         return this.username;
     }
 
     public String getAvatar() {
         return this.avatar;
-    } 
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setUsername(String username) {
         this.username = username;
