@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 @Entity
 public class Person {
+
+    public Person() {}
  
     public Person(PersonDTO person) {
         this.username = person.username();
@@ -22,7 +24,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)

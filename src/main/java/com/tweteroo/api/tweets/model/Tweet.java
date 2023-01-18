@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 public class Tweet {
 
     public Tweet(TweetDTO tweet) {
-        this.username = tweet.username();
-        this.avatar = tweet.avatar();
         this.text = tweet.text();
     }
 
@@ -25,12 +23,12 @@ public class Tweet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 200, nullable = false)
-    private String username;
+    @Column(length = 1000, nullable = false)
+    private String text;
 
     @Column(nullable = false)
     private String avatar;
 
-    @Column(length = 1000, nullable = false)
-    private String text;
+    @Column(length = 200, nullable = false)
+    private String username;
 }
