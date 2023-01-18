@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.tweets.model.Tweet;
@@ -25,8 +26,10 @@ public class TweetController {
     private H2TweetRepo repo;
 
     @GetMapping
-    public List<Tweet> listTweets() {
-        PageRequest pageRequest = PageRequest.of(0, 5, Direction.DESC, "id");
+    public List<Tweet> listTweets(@RequestParam String page) {
+        int pageStart = Integer.parseInt(page);
+
+        PageRequest pageRequest = PageRequest.of(pageStart, 5, Direction.DESC, "id");
         Page<Tweet> tweetsPage = repo.findAll(pageRequest); 
 
         return tweetsPage.getContent();   
