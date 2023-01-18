@@ -3,6 +3,9 @@ package com.tweteroo.api.tweets.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +26,10 @@ public class TweetController {
 
     @GetMapping
     public List<Tweet> listTweets() {
-        return repo.findAll();
+        PageRequest pageRequest = PageRequest.of(0, 5, Direction.DESC, "id");
+        Page<Tweet> tweetsPage = repo.findAll(pageRequest); 
+
+        return tweetsPage.getContent();   
     }
 
     @PostMapping
